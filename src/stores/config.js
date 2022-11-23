@@ -2,63 +2,45 @@ import React from 'react';
 
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
-import AsyncStorage from '@react-native-community/async-storage';
-import thunk from 'redux-thunk';
+import storage from 'redux-persist/lib/storage';
+import { composeWithDevTools } from '@redux-devtools/extension';
 
 import UserReducer from './User/user.reducer';
-import TransactionReducer from './Transaction/transaction.reducer';
-import ProductReducer from './Product/product.reducer';
-import WorkplaceReducer from './Workplace/workplace.reducer';
-import DraftReducer from './Draft/draft.reducer';
-import WorkerReducer from './Worker/worker.reducer';
-import MiscReducer from './Misc/misc.reducer';
-import ErrorReducer from './Error/error.reducer';
-import BottomNotifReducer from './BottomNotif/bottomNotif.reducer';
-
-import autoMergeLevel2Immutable from './autoMergeLevel2Immutable';
 
 const rootReducer = combineReducers({
-  user: UserReducer,
-  transaction: TransactionReducer,
-  product: ProductReducer,
-  workplace: WorkplaceReducer,
-  worker: WorkerReducer,
-  misc: MiscReducer,
-  error: ErrorReducer,
-  draft: DraftReducer,
-  bottomNotif: BottomNotifReducer,
+	user: UserReducer,
 });
 
 const persistConfig = {
-  key: 'root',
-  storage: AsyncStorage,
-  stateReconciler: autoMergeLevel2Immutable,
+	key: 'root',
+	storage: storage,
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const asyncStore = createStore(
-  persistedReducer,
-  compose(
-    applyMiddleware(
-      thunk,
-    ),
-  ),
+const store = createStore(
+	persistedReducer,
+	composeWithDevTools(
+		applyMiddleware(
+			thunk,
+		),
+	),
 );
 
-const persistor = persistStore(asyncStore);
+const persistor = persistStore(store);
 // persistor.purge();
 
-const ReduxStore = props => {
-  return (
-    <Provider store={ asyncStore }>
-      <PersistGate loading={ null } persistor={ persistor }>
-        { props.children }
-      </PersistGate>
-    </Provider>
-  );
+const Redux = props => {
+	return (
+		<Provider store={ store }>
+			<PersistGate loading={ null } persistor={ persistor }>
+				{ props.children }
+			</PersistGate>
+		</Provider>
+	);
 };
 
-export { ReduxStore, asyncStore };
+export { Redux, store };

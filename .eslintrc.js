@@ -44,7 +44,7 @@
 
 module.exports = {
 	root: true,
-	parser: '@babel/eslint-parser',
+	parser: "babel-eslint",
 	extends: ['plugin:react/recommended'],
 	ignorePatterns: 'node_modules',
 	rules: {
@@ -61,7 +61,6 @@ module.exports = {
 				'children': true
 			}
 		],
-		'react-native/no-inline-styles': 0,
 		'object-curly-spacing': [1, 'always'],
 		'jsx-quotes': [1, 'prefer-single'],
 		'quotes': [1, 'single'],

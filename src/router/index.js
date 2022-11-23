@@ -8,8 +8,10 @@ import {
 	Home
 } from 'pages';
 import {
-	NavigationSetter
+	NavigationSetter,
+	Text
 } from 'components';
+import { GlobalStyles } from 'constant';
 
 import AuthRoutes from './AuthRoute';
 import PrivateRoute from './PrivateRoute';
@@ -18,6 +20,7 @@ const AppRouter = () => {
 	return (
 		<BrowserRouter window={ window }>
 			<NavigationSetter />
+			<GlobalStyles />
 
 			<Routes>
 				<Route path='/' element={ <Home /> } />

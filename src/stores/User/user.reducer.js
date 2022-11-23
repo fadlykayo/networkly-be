@@ -8,54 +8,38 @@ Immutable.JS have been designed to overcome the issues with immutability inheren
 providing all the benefits of immutability with the performance your app requires. */
 
 const initialState = fromJS({
-  id: '',
-  token: {},
-  refresh_token: {},
-  user: {},
-  profile_picture: '',
-  isLoading: false,
+	token: {},
+	data: {},
+	isLoading: false,
 });
 
 export default (state = initialState, action) => {
-  switch (action.type) {
-    case Dispatches.REQUEST_OTP:
-      return state.set('id', fromJS(action.payload.id));
+	switch (action.type) {
+		case Dispatches.LOGIN:
+			return {
+				token: action.payload.token,
+				data: action.payload.data,
+			};
 
-    case Dispatches.LOGIN:
-    case Dispatches.REGENERATE_TOKEN:
-      return state
-        .set('token', fromJS(action.payload.token))
-        .set('refresh_token', fromJS(action.payload.refresh_token))
-        .set('user', fromJS(action.payload.user));
+		case Dispatches.USER_LOADING_START:
+			return {
+				isLoading: false,
+			};
 
-    case Dispatches.CHANGE_PHONE_NUMBER:
-      return state.setIn(['user', 'phone'], fromJS(action.payload.phone));
+		case Dispatches.USER_LOADING_END:
+		case Dispatches.FORCE_LOADING_END:
+			return {
+				isLoading: false,
+			};
 
-    case Dispatches.REGISTER:
-      return state.setIn(['user', 'email'], fromJS(action.payload.email));
+		case Dispatches.LOGOUT:
+			return {
+				token: {},
+				data: {},
+				isLoading: false,
+			};
 
-    case Dispatches.SET_PROFILE_PICTURE:
-      return state.setIn(['user', 'photo'], fromJS(action.payload.newPhoto));
-      // return state.set('profile_picture', fromJS(action.payload));
-
-    case Dispatches.USER_LOADING_START:
-      return state.set('isLoading', true);
-
-    case Dispatches.USER_LOADING_END:
-    case Dispatches.FORCE_LOADING_END:
-      return state.set('isLoading', false);
-
-    case Dispatches.LOGOUT:
-      return fromJS({
-        id: '',
-        token: {},
-        refresh_token: {},
-        user: {},
-        profile_picture: '',
-        isLoading: false,
-      });
-
-    default:
-      return state;
-  }
+		default:
+			return state;
+	}
 };

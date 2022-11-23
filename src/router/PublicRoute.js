@@ -1,16 +1,14 @@
 import React from 'react';
-import { useTypedSelector } from 'hooks';
+import { useSelector } from 'react-redux';
 import {
 	Navigate,
 	Outlet
 } from 'react-router-dom';
-import { UserState } from 'interface';
 
 const AuthRoute = () => {
+	const tokenSelectorProps = useSelector(state => state.user.token);
 
-	const { user } = useTypedSelector < UserState > ('user');
-
-	if (user.accessToken) {
+	if (tokenSelectorProps) {
 		return <Navigate to='/dashboard' replace />;
 	}
 	return <Outlet />;

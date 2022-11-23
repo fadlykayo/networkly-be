@@ -1,7 +1,13 @@
+import LocalStorage from './LocalStorage';
+import Logger from './Logger';
+import Navigation from './Navigation';
 import History from './History';
-import Selector from './Selector';
+import Hooks from './Hooks';
 
 export {
 	History,
-	Selector
+	LocalStorage,
+	Logger,
+	Navigation,
+	Hooks
 };

@@ -2,7 +2,7 @@ import UserAction from './User/user.action';
 
 import UserReducer from './User/user.reducer';
 
-import { ReduxStore, asyncStore } from './config';
+import { Redux, store } from './config';
 
 const reducers = {
 	UserReducer,
@@ -15,6 +15,6 @@ const actions = {
 export {
 	reducers,
 	actions,
-	ReduxStore,
-	asyncStore,
+	Redux,
+	store,
 };

@@ -1,9 +1,21 @@
-import { Home } from 'pages';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
-function App() {
+import AppRouter from 'router';
+import { Redux } from 'store';
+
+import { store, persistor } from './stores';
+import './App.css';
+
+const App = () => {
 	return (
-		<Home />
+		<AppRouter />
 	);
-}
+};
 
 export default App;
+
+// <Redux>
+// 	<AppRouter />
+// </Redux>
