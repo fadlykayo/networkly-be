@@ -1,4 +1,4 @@
-const configEnv = {
+export default {
 	baseUrl: process.env.REACT_APP_BASE_API_URL || '',
 	version: process.env.REACT_APP_API_VERSION || '',
 	apiKey: process.env.REACT_APP_API_KEY,
@@ -7,5 +7,3 @@ const configEnv = {
 	token: 'access_token',
 	refreshToken: 'refresh_token'
 };
-
-export default configEnv;

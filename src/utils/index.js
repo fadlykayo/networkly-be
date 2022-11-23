@@ -1,4 +1,4 @@
-import CustomAxios from './CustomAxios';
+import CustomAxios from './AxiosConfig';
 import CreateRequest from './CreateRequest';
 import Api from './Api';
 

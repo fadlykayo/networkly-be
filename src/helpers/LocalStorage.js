@@ -1,4 +1,4 @@
-import { EnvConfig } from 'constant';
+import { EnvConfig } from 'constants';
 
 const refreshTokenKey = EnvConfig.refreshToken;
 const tokenKey = EnvConfig.token;

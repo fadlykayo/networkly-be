@@ -17,6 +17,6 @@ const screen = {
 };
 
 export default {
-	screen,
-	size
+	screen: screen,
+	size: size
 };

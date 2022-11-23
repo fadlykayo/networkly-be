@@ -1,8 +1,8 @@
-import { History } from 'helpers';
+import { NavigationHelper } from 'helpers';
 import { useNavigate } from 'react-router-dom';
 
 const NavigationSetter = () => {
-	History.navigate = useNavigate();
+	NavigationHelper.navigate = useNavigate();
 	return null;
 };
 

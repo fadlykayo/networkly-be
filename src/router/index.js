@@ -4,9 +4,7 @@ import {
 	Route,
 	BrowserRouter,
 } from 'react-router-dom';
-import {
-	Home
-} from 'pages';
+import { Home } from 'pages';
 import {
 	NavigationSetter,
 	Text
@@ -23,14 +21,14 @@ const AppRouter = () => {
 			<GlobalStyles />
 
 			<Routes>
-				<Route path='/' element={ <Home /> } />
-				{/* <Route element={ <AuthRoutes /> }>
+				<Route path='/home' element={ <Home /> } />
+				{ /* <Route element={ <AuthRoutes /> }>
 					<Route path='/login' element={ <LoginPage /> } />
 				</Route>
 				<Route element={ <PrivateRoute /> }>
 					<Route path='/dashboard' element={ <Dashboard /> } />
 					<Route path='/detail' element={ <Detail /> } />
-				</Route> */}
+				</Route> */ }
 				<Route path='*' element={ <Text.H1>404 NOT FOUND</Text.H1> } />
 			</Routes>
 		</BrowserRouter >

@@ -47,7 +47,11 @@ module.exports = {
 	parser: '@babel/eslint-parser',
 	extends: ['plugin:react/recommended'],
 	parserOptions: {
-		sourceType: 'module'
+		requireConfigFile: false,
+	},
+	env: {
+		browser: true,
+		es2021: true
 	},
 	ignorePatterns: 'node_modules',
 	rules: {
@@ -127,7 +131,7 @@ module.exports = {
 				}
 			}
 		],
-		'object-property-newline': [1, { 'minItems': 5 }],
+		// 'object-property-newline': [1, { "minItems": 5 }],
 		'indent': [1, 'tab', { 'SwitchCase': 1 }],
 	}
 };

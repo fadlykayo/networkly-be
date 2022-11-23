@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { MiscHelper } from 'helpers';
 
-import CustomAxios from './CustomAxios';
+import CustomAxios from './AxiosConfig';
 
 /**
  *

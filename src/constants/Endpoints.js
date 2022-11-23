@@ -1,5 +1,6 @@
-import env from '../env';
-const baseUrl = env.baseUrl;
+import { EnvConfig } from 'constants';
+
+const baseUrl = EnvConfig.baseUrl;
 
 export default {
 	REGISTER: { baseUrl: baseUrl, path: 'register', method: 'POST' },
