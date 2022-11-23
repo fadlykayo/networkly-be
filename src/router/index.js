@@ -19,7 +19,6 @@ const AppRouter = () => {
 		<BrowserRouter window={ window }>
 			<NavigationSetter />
 			<GlobalStyles />
-
 			<Routes>
 				<Route path='/' element={ <Home /> } />
 				{ /* <Route element={ <AuthRoutes /> }>
