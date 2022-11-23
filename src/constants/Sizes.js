@@ -1,4 +1,4 @@
-const size = {
+const pixels = {
 	xs: '480px',
 	sm: '576px',
 	md: '768px',
@@ -7,16 +7,16 @@ const size = {
 	xxl: '1600px',
 };
 
-const screen = {
-	xs: `screen and (max-width: ${ size.xs })`,
-	sm: `screen and (max-width: ${ size.sm })`,
-	md: `screen and (max-width: ${ size.md })`,
-	lg: `screen and (max-width: ${ size.lg })`,
+const screens = {
+	xs: `screen and (max-width: ${ pixels.xs })`,
+	sm: `screen and (max-width: ${ pixels.sm })`,
+	md: `screen and (max-width: ${ pixels.md })`,
+	lg: `screen and (max-width: ${ pixels.lg })`,
 	tablet: 'screen and (min-device-width : 600px) and (max-device-width : 1024px)',
 	smallRes: 'screen and (min-device-width : 600px) and (max-device-width : 1440px)',
 };
 
 export default {
-	screen: screen,
-	size: size
+	pixels: pixels,
+	screens: screens
 };

@@ -1,4 +1,4 @@
-import { EnvConfig } from 'constants';
+import EnvConfig from './EnvConfig';
 
 const baseUrl = EnvConfig.baseUrl;
 

@@ -21,7 +21,7 @@ const AppRouter = () => {
 			<GlobalStyles />
 
 			<Routes>
-				<Route path='/home' element={ <Home /> } />
+				<Route path='/' element={ <Home /> } />
 				{ /* <Route element={ <AuthRoutes /> }>
 					<Route path='/login' element={ <LoginPage /> } />
 				</Route>

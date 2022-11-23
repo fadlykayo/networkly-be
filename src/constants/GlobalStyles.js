@@ -37,7 +37,7 @@ export default createGlobalStyle`
     padding: 0 !important;
   }
 
-  @media ${ Sizes.md }{
+  @media ${ Sizes.pixels.md }{
     .md-p-0 {
       padding: 0 !important;
     }
