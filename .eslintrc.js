@@ -44,7 +44,7 @@
 
 module.exports = {
 	root: true,
-	parser: "babel-eslint",
+	parser: '@babel/eslint-parser',
 	extends: ['plugin:react/recommended'],
 	ignorePatterns: 'node_modules',
 	rules: {
