@@ -16,7 +16,7 @@ const screen = {
 	smallRes: 'screen and (min-device-width : 600px) and (max-device-width : 1440px)',
 };
 
-export {
+export default {
 	screen,
 	size
 };

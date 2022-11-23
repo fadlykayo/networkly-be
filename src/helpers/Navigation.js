@@ -1,14 +1,17 @@
-import { useNavigate, useLocation } from 'react-router-dom';
-
-const navigation = () => {
-	const navigate = useNavigate();
-	const { state, pathname } = useLocation();
-
-	return {
-		navigate,
-		state,
-		pathname
-	};
+const history = {
+	navigate: null,
+	push: (page, options) => {
+		if (History.navigate) {
+			History.navigate(page, options);
+			/* 
+			options?: {
+				replace?: boolean;
+				state?: any;
+				relative?: RelativeRoutingType;
+			}
+			*/
+		}
+	},
 };
 
-export default navigation;
+export default history;

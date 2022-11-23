@@ -1,4 +1,4 @@
-import env from '../../env';
+import env from '../env';
 const baseUrl = env.baseUrl;
 
 export default {

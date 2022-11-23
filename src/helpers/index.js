@@ -1,13 +1,12 @@
-import LocalStorage from './LocalStorage';
-import Logger from './Logger';
-import Navigation from './Navigation';
-import History from './History';
-import Hooks from './Hooks';
+import LocalStorageHelper from './LocalStorage';
+import NavigationHelper from './Navigation';
+import HooksHelper from './Hooks';
+import MiscHelper from './Misc';
+// import NavigationsHelper from './Navigations';
 
 export {
-	History,
-	LocalStorage,
-	Logger,
-	Navigation,
-	Hooks
+	LocalStorageHelper,
+	NavigationHelper,
+	HooksHelper,
+	MiscHelper,
 };

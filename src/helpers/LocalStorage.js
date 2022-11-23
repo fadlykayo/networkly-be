@@ -1,15 +1,60 @@
-export const clearToken = () => {
-	return localStorage.removeItem('token');
+import { EnvConfig } from 'constant';
+
+const refreshTokenKey = EnvConfig.refreshToken;
+const tokenKey = EnvConfig.token;
+
+// ==== primary ====
+const setItem = (key, value) => {
+	return localStorage.setItem(key, JSON.stringify(value));
 };
 
-export const getToken = () => {
-	return localStorage.getItem('token');
+const getItem = key => {
+	const jsonValue = localStorage.getItem(key);
+
+	return jsonValue !== null ? JSON.parse(jsonValue) : null;
 };
 
-export const setTokenUser = (token) => {
-	return localStorage.setItem('token', token);
+const removeItem = key => {
+	return localStorage.removeItem(key);
 };
 
-export const clearStorage = () => {
+const clearStorage = () => {
 	return localStorage.clear();
+};
+
+// ==== for authentication ====
+const getAccessToken = () => {
+	return getItem(tokenKey);
+};
+
+const getRefreshToken = () => {
+	return getItem(refreshTokenKey);
+};
+
+const setTokenUser = dataToken => {
+	const keysToSet = [tokenKey, refreshTokenKey];
+
+	return keysToSet.forEach(keyName => setItem(keyName, dataToken[keyName]));
+};
+
+const setUserData = user => {
+	return setItem('user', user);
+};
+
+const clearToken = () => {
+	const keysToRemove = [tokenKey, refreshTokenKey];
+
+	return keysToRemove.forEach(keyName => removeItem(keyName));
+};
+
+export default {
+	setItem,
+	getItem,
+	removeItem,
+	clearStorage,
+	getAccessToken,
+	getRefreshToken,
+	setTokenUser,
+	setUserData,
+	clearToken,
 };

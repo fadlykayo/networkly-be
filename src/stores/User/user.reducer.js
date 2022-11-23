@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 
-import { Dispatches } from 'consts';
+import { Dispatches } from 'constants';
 
 /* Direct mutation of reducer state is prohibited.
 Therefore, we must assign a new object where it takes a copy of our current state.

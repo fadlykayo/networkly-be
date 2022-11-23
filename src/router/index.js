@@ -11,9 +11,9 @@ import {
 	NavigationSetter,
 	Text
 } from 'components';
-import { GlobalStyles } from 'constant';
+import { GlobalStyles } from 'constants';
 
-import AuthRoutes from './AuthRoute';
+import AuthRoutes from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
 
 const AppRouter = () => {

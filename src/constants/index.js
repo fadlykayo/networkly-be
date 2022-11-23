@@ -5,6 +5,7 @@ import Images from './Images';
 import GlobalStyles from './GlobalStyles';
 import Fonts from './Fonts';
 import Sizes from './Sizes';
+import EnvConfig from './EnvConfig';
 
 export {
 	Colors,
@@ -13,5 +14,6 @@ export {
 	Fonts,
 	GlobalStyles,
 	Images,
-	Sizes
+	Sizes,
+	EnvConfig
 };
