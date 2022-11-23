@@ -27,3 +27,10 @@ yarn-error.log*
 .env
 .env.build
 .vercel
+
+# Custom
+.env*
+*env.js
+package-lock.json
+yarn.lock
+.vscode
