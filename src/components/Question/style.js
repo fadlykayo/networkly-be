@@ -1,34 +1,11 @@
 import styled from 'styled-components';
-import { space, layout, color } from 'styled-system';
+import { space, layout, color, typography } from 'styled-system';
+import { Input } from 'antd';
 
 const Container = styled.div`
 	${ space }
   ${ layout }
-  ${ color }
   
-	.title {
-		font-size: 24px;
-		margin-bottom: 5%;
-	}
-
-	.count {
-		font-size: 12px;
-	}
-
-	.typeForm-input { 
-		margin-bottom: 5% !important;
-		border: none !important;
-		border-radius: 0 !important;
-		background-color: @home-bg-color !important;
-		font-size: x-large !important;
-		padding: 30px 0px !important;
-	}
-
-	.typeForm-input:focus {
-		box-shadow: none !important;
-		border-bottom: 1px solid @home-text-color !important 
-	}
-
 	.press-enter {
 		font-size: 12px;
 		color: black;
@@ -39,18 +16,43 @@ const Container = styled.div`
 	}
 
 	#enter-btn {
-		background-color: rgb(29, 25, 25);
+		background-color: black;
 		color:  white;
-		border-radius: 5px;
-		font-weight: bold;
+		margin-right: 10px;
 	}
 
 	#submit-btn {
-		background-color: blue;
+		background-color: #7cd1f9;
 		color:  white;
-		border-radius: 5px;
-		font-weight: bold;
 	}
 `;
 
-export { Container };
+const StyledInput = styled(Input)`
+	${ space }
+  ${ layout }
+	${ typography }
+
+	border: none !important;
+	border-radius: 0 !important;
+	padding: 0px !important;
+	padding-bottom: 3px;
+	&:focus {
+		box-shadow: none !important;
+		border-bottom: 1px solid black !important 
+	}
+`;
+
+const ButtonContainer = styled.div`
+	margin-top: 5px;
+`;
+
+const ImageContainer = styled.div`
+	margin-bottom: 35px;
+`;
+
+export {
+	Container,
+	ButtonContainer,
+	ImageContainer,
+	StyledInput
+};

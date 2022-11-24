@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Input, Button } from 'antd';
-import { CheckOutlined, ArrowRightOutlined } from '@ant-design/icons';
+import { CheckOutlined, ArrowRightOutlined, CaretRightOutlined } from '@ant-design/icons';
 
-import { Container } from './style';
+import { Text } from 'components';
+import { MiscHelper } from 'helpers';
+
+import {
+	Container,
+	ButtonContainer,
+	ImageContainer,
+	StyledInput,
+} from './style';
 
 const Questions = ({
 	data,
@@ -11,7 +19,7 @@ const Questions = ({
 	inputDataHandler,
 	submitBtnHandler
 }) => {
-	const [value, setValue] = useState({});
+	const [answer, setAnswer] = useState({});
 
 	useEffect(() => {
 		// Focus to the first question input
@@ -19,7 +27,6 @@ const Questions = ({
 	}, []);
 
 	const clickHandler = (link, i) => {
-		console.log(i);
 		location.href = `#${ link }`;
 
 		setTimeout(() => {
@@ -28,10 +35,8 @@ const Questions = ({
 	};
 
 	const inputHandler = e => {
-		console.log(e.target.name, e.target.value);
-		console.log(value);
-		setValue({
-			...value,
+		setAnswer({
+			...answer,
 			[e.target.name]: e.target.value,
 		});
 
@@ -42,46 +47,55 @@ const Questions = ({
 		submitBtnHandler();
 	};
 
-	return (
-		<Container>
-			<div className='title'>
-				<h2>
-					<span className='count'>
-						{ index + 1 } &nbsp;
-						<ArrowRightOutlined />
-					</span>&nbsp;
-					<span className='title'>
-						{ data.title }
-					</span>
-				</h2>
-			</div>
-			<Input
+	const renderQuestion = () => {
+		return data.label === 'picture' ?
+			<ImageContainer>
+				asdadsa
+			</ImageContainer>
+			:
+			<StyledInput
+				id={ index }
 				placeholder='Type your answer here...'
 				name={ data.label }
-				id={ index }
-				className='typeForm-input'
 				onPressEnter={ () => clickHandler(data.next, data.id) }
-				// style={{ marginBottom: '5%', backgroundColor: '#F1ECE2' }}
-				onChange={
-					inputHandler
-				}
-			/>
-			<br />
-			{
-				isSubmit ?
-					<Button id='submit-btn' onClick={ submitHandler }>SUBMIT</Button> :
-					<div>
-						<Button
-							// hidden={ isMobile }
-							icon={ <CheckOutlined /> }
-							id='enter-btn'
-							onClick={ () => clickHandler(data.next, data.id) }
-						>
-							OK
+				onChange={ inputHandler }
+				fontSize={ ['1.3rem', '1.8rem', '2rem'] }
+				mb={ ['1.5rem', '2rem', '2.2rem'] }
+			/>;
+	};
+
+	return (
+		<Container>
+			<Text.Paragraph fontSize={ ['1.5rem', '2rem', '2.2rem'] }>
+				<span><CaretRightOutlined /></span>&nbsp;
+				<span>{ data.title }</span>
+			</Text.Paragraph>
+
+			{ renderQuestion() }
+
+			<ButtonContainer>
+				{
+					isSubmit ?
+						<Button id='submit-btn' onClick={ submitHandler }>
+							<CheckOutlined />
+							SUBMIT
 						</Button>
-						<span className='press-enter'> press <span className='bold'>ENTER</span></span>
-					</div>
-			}
+						:
+						<React.Fragment>
+							{
+								MiscHelper.deviceDetect()
+									? null
+									:
+									<Button id='enter-btn' onClick={ () => clickHandler(data.next, data.id) }>
+										<CheckOutlined />
+										OK
+									</Button>
+							}
+							<span className='press-enter'>press <span className='bold'>ENTER</span></span>
+						</React.Fragment>
+				}
+			</ButtonContainer>
+
 		</Container>
 	);
 };

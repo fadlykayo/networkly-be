@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SectionsContainer, Section } from 'react-fullpage';
+import swal from 'sweetalert';
 
 import { Question } from 'components';
 
@@ -8,28 +9,46 @@ import { Container } from './style';
 const questionList = [
 	{
 		id: 1,
-		title: 'lets start with your first name? *',
+		title: 'What\'s your name?',
 		label: 'first_name',
 		next: 'last_name',
 	},
 	{
 		id: 2,
-		title: 'and your last name? *',
+		title: 'What\'s your surname?',
 		label: 'last_name',
-		next: 'city',
+		next: 'email',
 	},
 	{
 		id: 3,
-		title: 'what city and state are you from? (or put a zipcode) *',
-		label: 'city',
-		next: 'occupation',
+		title: 'What\'s your email?',
+		label: 'email',
+		next: 'phone',
 	},
 	{
 		id: 4,
-		title: 'got a job? or are you a student? *',
-		label: 'occupation',
+		title: 'What\'s your phone number?',
+		label: 'phone',
+		next: 'linkedIn',
+	},
+	{
+		id: 5,
+		title: 'What\'s your LinkedIn profile URL?',
+		label: 'linkedIn',
+		next: 'telegram',
+	},
+	{
+		id: 6,
+		title: 'What\'s your Telegram @?',
+		label: 'telegram',
+		next: 'picture',
+	},
+	{
+		id: 7,
+		title: 'Upload your profile picture!',
+		label: 'picture',
 		next: '',
-	}
+	},
 ];
 
 const Home = () => {
@@ -37,7 +56,7 @@ const Home = () => {
 		window.scrollTo(0, 0); // (x-coord, y-coord)
 	}, []);
 
-	const [formData, setFormData] = useState({});
+	const [answers, setAnswers] = useState({});
 
 	const anchorHandler = anchor_data => { // return array of anchor tags
 		return anchor_data.map(item => (
@@ -56,38 +75,36 @@ const Home = () => {
 	};
 
 	const inputDataHandler = (name, value) => {
-		setFormData({
-			...formData,
+		setAnswers({
+			...answers,
 			[name]: value
 		});
 	};
 
 	const submitBtnHandler = () => {
 		// API call here
-		alert({ // show success message on completion
-			title: '',
-			text: 'Thanks for completing the survey !!',
+		swal({
+			title: 'Submitted!',
+			text: 'Thank you for completing the registration!',
 			// icon: 'success',
 			dangerMode: false,
 		});
 	};
 
 	return (
-		<Container>
+		<Container mx={ [5, 6, 7] }>
 			<SectionsContainer { ...options }>
 				{
 					questionList.map((question, i) => {
 						return (
 							<Section key={ i } >
-								<header className='app-header'>
-									<Question
-										data={ question }
-										index={ i }
-										isSubmit={ i === (questionList.length - 1) }
-										inputDataHandler={ inputDataHandler }
-										submitBtnHandler={ submitBtnHandler }
-									/>
-								</header>
+								<Question
+									data={ question }
+									index={ i }
+									isSubmit={ i === (questionList.length - 1) }
+									inputDataHandler={ inputDataHandler }
+									submitBtnHandler={ submitBtnHandler }
+								/>
 							</Section>
 						);
 					})

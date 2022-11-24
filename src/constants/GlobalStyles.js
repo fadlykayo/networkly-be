@@ -14,6 +14,11 @@ export default createGlobalStyle`
     font-family: ${ Fonts.poppinsRegular };
   }
 
+	button {
+		border-radius: 5px !important;
+		font-weight: bold !important;
+	}
+
   ol, ul {
     list-style: none;
   }
