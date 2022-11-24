@@ -6,13 +6,17 @@ const Container = styled.div`
 	${ space }
   ${ layout }
   
-	.press-enter {
+	.enter-text {
 		font-size: 12px;
 		color: black;
 	}
 
 	.bold {
 		font-weight: bolder
+	}
+
+	.preview {
+		max-width: 200px;
 	}
 
 	#enter-btn {
@@ -48,11 +52,22 @@ const ButtonContainer = styled.div`
 
 const ImageContainer = styled.div`
 	margin-bottom: 35px;
+	// border: solid 1px red;
+`;
+
+const PreviewContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 20px 0px;
+	max-width: 200px;
+	// border: solid 1px red;
 `;
 
 export {
 	Container,
 	ButtonContainer,
 	ImageContainer,
-	StyledInput
+	StyledInput,
+	PreviewContainer
 };

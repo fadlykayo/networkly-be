@@ -3,6 +3,7 @@ import { SectionsContainer, Section } from 'react-fullpage';
 import swal from 'sweetalert';
 
 import { Question } from 'components';
+import { MiscHelper } from 'helpers';
 
 import { Container } from './style';
 
@@ -67,7 +68,7 @@ const Home = () => {
 	let options = {
 		anchors: anchorHandler(questionList), // (default []) Defines the anchor links (#example) to be shown on the URL for each section.
 		scrollBar: false, // (default false) Determines whether to use scroll bar for the vertical sections on site or not.
-		navigation: true, // (default false) If set to true, it will show a navigation bar made up of small circles.
+		navigation: !MiscHelper.deviceDetect(), // (default false) If set to true, it will show a navigation bar made up of small circles.
 		verticalAlign: true, // (default true) Vertically centering of the content using flexbox. You might want to wrap your content in a div to avoid potential issues. (Uses flex-direction: column; display: flex; justify-content: center;)
 		sectionPaddingTop: '0px', // (default 0) Defines the top padding for each section with a numerical value and its measure
 		sectionPaddingBottom: '0px', // (default 0) Defines the bottom padding for each section with a numerical value and its measure

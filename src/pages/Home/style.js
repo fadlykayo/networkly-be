@@ -9,8 +9,7 @@ const Container = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	min-height: 70vh;
-	border: solid 1px red;
+	// border: solid 1px red;
 `;
 
 export { Container };
