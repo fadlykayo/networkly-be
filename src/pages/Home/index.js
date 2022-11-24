@@ -1,60 +1,61 @@
 import React, { useState, useEffect } from 'react';
-import { SectionsContainer, Section, ScrollToTopOnMount } from 'react-fullpage';
+import { SectionsContainer, Section } from 'react-fullpage';
 
 import { Question } from 'components';
-// import './static/style';
 
-// => in the render() method of your app
-const questionData = [
+import { Container } from './style';
+
+const questionList = [
 	{
+		id: 1,
 		title: 'lets start with your first name? *',
-		id: 'first_name',
-		link: 'last_name',
-		i: 1
+		label: 'first_name',
+		next: 'last_name',
 	},
 	{
+		id: 2,
 		title: 'and your last name? *',
-		id: 'last_name',
-		link: 'city',
-		i: 2
+		label: 'last_name',
+		next: 'city',
 	},
 	{
+		id: 3,
 		title: 'what city and state are you from? (or put a zipcode) *',
-		id: 'city',
-		link: 'occupation',
-		i: 3
+		label: 'city',
+		next: 'occupation',
 	},
 	{
+		id: 4,
 		title: 'got a job? or are you a student? *',
-		id: 'occupation',
-		link: '',
-		i: 4
+		label: 'occupation',
+		next: '',
 	}
 ];
 
-const anchorFunc = anchor_data => { // return array of anchor tags
-	return anchor_data.map(item => (
-		item.id
-	));
-};
-
 const Home = () => {
-	let options = {
-		sectionClassName: 'section',
-		anchors: anchorFunc(questionData),
-		scrollBar: false,
-		navigation: true,
-		verticalAlign: false,
-		sectionPaddingTop: '50px',
-		sectionPaddingBottom: '50px',
-		arrowNavigation: false
-	};
+	useEffect(() => {
+		window.scrollTo(0, 0); // (x-coord, y-coord)
+	}, []);
 
 	const [formData, setFormData] = useState({});
 
+	const anchorHandler = anchor_data => { // return array of anchor tags
+		return anchor_data.map(item => (
+			item.label
+		));
+	};
+
+	let options = {
+		anchors: anchorHandler(questionList), // (default []) Defines the anchor links (#example) to be shown on the URL for each section.
+		scrollBar: false, // (default false) Determines whether to use scroll bar for the vertical sections on site or not.
+		navigation: true, // (default false) If set to true, it will show a navigation bar made up of small circles.
+		verticalAlign: true, // (default true) Vertically centering of the content using flexbox. You might want to wrap your content in a div to avoid potential issues. (Uses flex-direction: column; display: flex; justify-content: center;)
+		sectionPaddingTop: '0px', // (default 0) Defines the top padding for each section with a numerical value and its measure
+		sectionPaddingBottom: '0px', // (default 0) Defines the bottom padding for each section with a numerical value and its measure
+		arrowNavigation: false // (default true) Determines whether to use control arrows for the slides to move right or left.
+	};
+
 	const inputDataHandler = (name, value) => {
-		console.log(name, value);
-		console.log(formData);
 		setFormData({
 			...formData,
 			[name]: value
@@ -62,41 +63,37 @@ const Home = () => {
 	};
 
 	const submitBtnHandler = () => {
-		console.log(formData);
 		// API call here
 		alert({ // show success message on completion
 			title: '',
 			text: 'Thanks for completing the survey !!',
-			icon: 'success',
+			// icon: 'success',
 			dangerMode: false,
 		});
 	};
 
 	return (
-		<div>
-			<ScrollToTopOnMount />
+		<Container>
 			<SectionsContainer { ...options }>
 				{
-					questionData.map((item, i) => {
+					questionList.map((question, i) => {
 						return (
 							<Section key={ i } >
-								<div>
-									<header className='App-header'>
-										<Question
-											item={ item }
-											index={ i }
-											isSubmit={ i == (questionData.length - 1) }
-											inputDataHandler={ inputDataHandler }
-											submitBtnHandler={ submitBtnHandler }
-										/>
-									</header>
-								</div>
+								<header className='app-header'>
+									<Question
+										data={ question }
+										index={ i }
+										isSubmit={ i === (questionList.length - 1) }
+										inputDataHandler={ inputDataHandler }
+										submitBtnHandler={ submitBtnHandler }
+									/>
+								</header>
 							</Section>
 						);
 					})
 				}
 			</SectionsContainer>
-		</div>
+		</Container>
 	);
 };
 

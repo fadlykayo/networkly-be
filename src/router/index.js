@@ -4,12 +4,12 @@ import {
 	Route,
 	BrowserRouter,
 } from 'react-router-dom';
+
 import { Home } from 'pages';
 import {
 	NavigationSetter,
 	Text
 } from 'components';
-import { GlobalStyles } from 'constants';
 
 import AuthRoutes from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
@@ -18,7 +18,6 @@ const AppRouter = () => {
 	return (
 		<BrowserRouter window={ window }>
 			<NavigationSetter />
-			<GlobalStyles />
 			<Routes>
 				<Route path='/' element={ <Home /> } />
 				{ /* <Route element={ <AuthRoutes /> }>

@@ -1,25 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { Input, Button } from 'antd';
+import { CheckOutlined, ArrowRightOutlined } from '@ant-design/icons';
 
-export default function Questions({
-	item,
+import { Container } from './style';
+
+const Questions = ({
+	data,
 	index,
 	isSubmit,
 	inputDataHandler,
 	submitBtnHandler
-}) {
-	const [value, setValue] = useState({
-	});
+}) => {
+	const [value, setValue] = useState({});
 
 	useEffect(() => {
-		// Update the document title using the browser API
+		// Focus to the first question input
 		document.getElementById('0').focus();
-		console.log('render');
 	}, []);
 
 	const clickHandler = (link, i) => {
 		console.log(i);
 		location.href = `#${ link }`;
+
 		setTimeout(() => {
 			document.getElementById(i.toString()).focus();
 		}, 1100);
@@ -32,6 +34,7 @@ export default function Questions({
 			...value,
 			[e.target.name]: e.target.value,
 		});
+
 		inputDataHandler(e.target.name, e.target.value);
 	};
 
@@ -40,24 +43,24 @@ export default function Questions({
 	};
 
 	return (
-		<div >
+		<Container>
 			<div className='title'>
 				<h2>
 					<span className='count'>
 						{ index + 1 } &nbsp;
-						{ /* <Icon type='arrow-right' /> */ }
+						<ArrowRightOutlined />
 					</span>&nbsp;
 					<span className='title'>
-						{ item.title }
+						{ data.title }
 					</span>
 				</h2>
 			</div>
 			<Input
 				placeholder='Type your answer here...'
-				name={ item.id }
+				name={ data.label }
 				id={ index }
-				className='typeform-input'
-				onPressEnter={ () => clickHandler(item.link, item.i) }
+				className='typeForm-input'
+				onPressEnter={ () => clickHandler(data.next, data.id) }
 				// style={{ marginBottom: '5%', backgroundColor: '#F1ECE2' }}
 				onChange={
 					inputHandler
@@ -66,22 +69,21 @@ export default function Questions({
 			<br />
 			{
 				isSubmit ?
-					<Button id='submit-btn' onClick={ submitHandler }>
-						SUBMIT
-					</Button>
-					:
+					<Button id='submit-btn' onClick={ submitHandler }>SUBMIT</Button> :
 					<div>
 						<Button
 							// hidden={ isMobile }
-							icon='check'
+							icon={ <CheckOutlined /> }
 							id='enter-btn'
-							onClick={ () => clickHandler(item.link, item.i) }
+							onClick={ () => clickHandler(data.next, data.id) }
 						>
 							OK
 						</Button>
 						<span className='press-enter'> press <span className='bold'>ENTER</span></span>
 					</div>
 			}
-		</div>
+		</Container>
 	);
-}
+};
+
+export default Questions;

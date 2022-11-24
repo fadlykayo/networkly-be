@@ -1,16 +1,18 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
+import { ThemeProvider } from 'styled-components';
 
 import AppRouter from 'router';
+import { Theme, GlobalStyles } from 'constants';
 import { Redux } from 'stores';
-import { Home } from 'pages';
 
 import './App.css';
 
 const App = () => {
 	return (
-		<AppRouter />
+		<ThemeProvider theme={ Theme }>
+			<GlobalStyles />
+			<AppRouter />
+		</ThemeProvider>
 	);
 };
 
